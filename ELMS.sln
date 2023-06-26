@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ELMS", "ELMS\ELMS.csproj", "{9F230648-47E4-490F-89CB-0EAF3E8F94BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courses", "Courses\Courses.csproj", "{44F4C5C0-AFF5-4061-AFC1-D5DE1C867B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enrollments", "Enrollments\Enrollments.csproj", "{04F0A07F-C74D-4431-A4F5-6AB4D1C384E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F230648-47E4-490F-89CB-0EAF3E8F94BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F230648-47E4-490F-89CB-0EAF3E8F94BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F230648-47E4-490F-89CB-0EAF3E8F94BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F230648-47E4-490F-89CB-0EAF3E8F94BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F4C5C0-AFF5-4061-AFC1-D5DE1C867B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F4C5C0-AFF5-4061-AFC1-D5DE1C867B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F4C5C0-AFF5-4061-AFC1-D5DE1C867B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F4C5C0-AFF5-4061-AFC1-D5DE1C867B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04F0A07F-C74D-4431-A4F5-6AB4D1C384E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F0A07F-C74D-4431-A4F5-6AB4D1C384E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F0A07F-C74D-4431-A4F5-6AB4D1C384E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F0A07F-C74D-4431-A4F5-6AB4D1C384E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63A68416-7A70-49F6-B6A3-FE533322CA81}
+	EndGlobalSection
+EndGlobal
