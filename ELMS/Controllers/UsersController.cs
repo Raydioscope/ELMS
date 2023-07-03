@@ -1,5 +1,6 @@
 ﻿using ELMS.Models;
 using ELMS.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ELMS.Controllers
@@ -12,11 +13,12 @@ namespace ELMS.Controllers
 
         public UsersController(UserService userService) =>
             _userService = userService;
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<List<Users>> Get() =>
             await _userService.GetAsync();
 
+        [Authorize(Roles ="Admin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> Get(string id)
         {
@@ -29,7 +31,7 @@ namespace ELMS.Controllers
 
             return user;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post(Users newUser)
         {
@@ -37,7 +39,7 @@ namespace ELMS.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, Users updatedUser)
         {
@@ -54,7 +56,7 @@ namespace ELMS.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -69,7 +71,7 @@ namespace ELMS.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("{role}")]
         public async Task<List<Users>> GetUsersByRole(string role) =>
             await _userService.GetByRoleAsync(role);

@@ -1,4 +1,5 @@
 ﻿using Courses.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Courses.Controllers
@@ -12,10 +13,12 @@ namespace Courses.Controllers
         public CoursesController(CourseService CourseService) =>
             _CourseService = CourseService;
 
+        [Authorize]
         [HttpGet]
         public async Task<List<Courses.Models.Courses>> Get() =>
             await _CourseService.GetAsync();
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Courses.Models.Courses>> Get(string id)
         {
@@ -29,6 +32,7 @@ namespace Courses.Controllers
             return course;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Post(Courses.Models.Courses newCourse)
         {
@@ -37,6 +41,7 @@ namespace Courses.Controllers
             return CreatedAtAction(nameof(Get), new { id = newCourse.Id }, newCourse);
         }
 
+        [Authorize(Roles = "Instructor,Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, Courses.Models.Courses updatedCourse)
         {
@@ -54,6 +59,7 @@ namespace Courses.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -69,8 +75,9 @@ namespace Courses.Controllers
             return NoContent();
         }
 
-        [HttpGet("{course}")]
-        public async Task<List<Courses.Models.Courses>> GetCoursesByInstructor(string inst) =>
-            await _CourseService.GetCourseByInstructorAsync(inst);
+        [Authorize]
+        [HttpGet("{Instructor}")]
+        public async Task<List<Courses.Models.Courses>> GetCoursesByInstructor(string Instructor) =>
+            await _CourseService.GetCourseByInstructorAsync(Instructor);
     }
 }

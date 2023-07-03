@@ -1,5 +1,6 @@
 ﻿using Enrollments.Models;
 using Enrollments.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Enrollments.Controllers
@@ -14,11 +15,13 @@ namespace Enrollments.Controllers
             public EnrollmentController(EnrollmentService EnrollmentService) =>
                 _EnrollmentService = EnrollmentService;
 
+        [Authorize]
             [HttpGet]
             public async Task<List<Enrollment>> Get() =>
                 await _EnrollmentService.GetAsync();
 
-            [HttpGet("{id}")]
+        [Authorize]
+        [HttpGet("{id}")]
             public async Task<ActionResult<Enrollment>> Get(string id)
             {
                 var enr = await _EnrollmentService.GetAsync(id);
@@ -30,8 +33,8 @@ namespace Enrollments.Controllers
 
                 return enr;
             }
-
-            [HttpPost]
+        [Authorize(Roles = "Learner")]
+        [HttpPost]
             public async Task<IActionResult> Post(Enrollment newEnrollment)
             {
                 await _EnrollmentService.CreateAsync(newEnrollment);
@@ -56,7 +59,8 @@ namespace Enrollments.Controllers
                 return NoContent();
             }
 
-            [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
             public async Task<IActionResult> Delete(string id)
             {
                 var enr = await _EnrollmentService.GetAsync(id);
@@ -70,10 +74,10 @@ namespace Enrollments.Controllers
 
                 return NoContent();
             }
-
-            [HttpGet("{enrollment}")]
-            public async Task<List<Enrollment>> GetEnrollmentByLearner(string learner) =>
-                await _EnrollmentService.GetEnrollmentByLearnerAsync(learner);
+        [Authorize(Roles = "Admin")]
+        [HttpGet("{Learner}")]
+            public async Task<List<Enrollment>> GetEnrollmentByLearner(string Learner) =>
+                await _EnrollmentService.GetEnrollmentByLearnerAsync(Learner);
         }
     }
 

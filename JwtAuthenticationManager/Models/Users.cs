@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ELMS.Models;
+namespace JwtAuthenticationManager.Models;
 
 public class Users
 {
