@@ -2,6 +2,7 @@ using Courses.Services;
 using ELMS.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,10 @@ builder.Services.AddAuthentication(opt => {
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("topsecretsecretJWTsigningKey@12356789"))
             };
         });
+builder.Host.UseSerilog((context, config) =>
+{
+    config.ReadFrom.Configuration(context.Configuration);
+});
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
